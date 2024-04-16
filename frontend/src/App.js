@@ -18,7 +18,7 @@ const RegisterAndLogout = () => {
 
 function App() {
 
-      return <>
+      return <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" 
@@ -43,7 +43,7 @@ function App() {
             />  
           </Routes>
         </BrowserRouter>
-      </>
+      </div>
 }
 
 export default App;

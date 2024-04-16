@@ -2,19 +2,19 @@ import { useState } from 'react'
 import api from "../api"
 import { useNavigate } from "react-router-dom"
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"; 
-import "../styles/form.css";
+import "../styles/Form.css";
 
-const Form = (endpoint, method) => {
+const Form = ({ endpoint, method }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    const name = (method === "login") ? "Login" : "Register"
+    const name = method === "login" ? "Login" : "Register"
 
     const handleSubmit = async (e) => {
-      setLoading(true);
       e.preventDefault();
+      setLoading(true);
 
       try {
         const res = await api.post(endpoint, { username, password})
@@ -24,6 +24,7 @@ const Form = (endpoint, method) => {
           navigate("/")
         }
         else {
+          alert('Registration successful! Please login.');
           navigate("/login")
         }
       }
@@ -33,32 +34,48 @@ const Form = (endpoint, method) => {
         setLoading(false)
       }
     }
+    const handlePassword = async (e) => {
+      e.preventDefault();
 
-    return (
-    <form onSubmit={handleSubmit}     className="form-container">
-      <h1>{name}</h1>
-      <input 
-        className="form-input"
-        value={username}
-        type='text'
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
+      try {
+        const res = await api.post('/auth', { username, password });
 
-      <input 
-        className="form-input"
-        value={password}
-        type='password'
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+      } catch (error) {
+        console.log("Error handling password:", error)
+      }
+    }
+
+    return ( 
+      <form onSubmit={handleSubmit}    className="form-container">
+        <h1>{name}</h1>
+        <input 
+          className="form-input"
+          value={username}
+          type='text'
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
         />
 
-      <button 
-        className="form-button" 
-        type = "submit"
-      >{name}</button>
-    </form>
-    );         
-   }
+        <input 
+          className="form-input"
+          value={password}
+          type='password'
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          />
+
+        <button 
+          className="form-button" 
+          type = "submit"
+          disabled={loading}
+        >{loading ? 'Loading...' : name}</button>
+        <br />
+        <button className="password-reset" 
+          onClick={handlePassword}
+          type="submit"
+        >Forgot password ?</button>
+      </form>
+    )      
+}
 
 export default Form;

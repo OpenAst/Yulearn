@@ -1,7 +1,7 @@
 import Form from "../components/Form"
 
 const Register = () => {
-  return <Form route="/api/user/register" method="register" />
+  return <Form endpoint="/api/user/register/" method="register" />
 
 }
 
