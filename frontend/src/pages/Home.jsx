@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import Navbar from '../components/Navbar';
 import Course from '../components/Course';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -10,8 +13,16 @@ const Home = () => {
 
   useEffect(() => {
     getCourse();
+    fetchUserData();
   }, []);
 
+  const fetchUserData = async () => {
+    try {
+      const response = await api.get('/api')
+    } catch (error) {
+      console.error("Error ", error)
+    }
+  }
   const getCourse = () => {
     api.get("/api/courses/")
       .then((res) => res.data)
@@ -51,7 +62,9 @@ const Home = () => {
 
   return (
     <div>
+      <Header />
       <Navbar />
+      <Footer />
       <div>
         <h2>Courses</h2>
         {courses.map((course) => <Course course={course} onDelete={deleteCourse} key={course.id} />

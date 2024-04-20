@@ -11,6 +11,7 @@ const Form = ({ endpoint, method }) => {
     const navigate = useNavigate()
 
     const name = method === "login" ? "Login" : "Register"
+    const text = method === "login" ? "Learn to earn" : "Welcome to the world of adventure";
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -48,6 +49,7 @@ const Form = ({ endpoint, method }) => {
     return ( 
       <form onSubmit={handleSubmit}    className="form-container">
         <h1>{name}</h1>
+        <p className="form-text">{text}</p>
         <input 
           className="form-input"
           value={username}

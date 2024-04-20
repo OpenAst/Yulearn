@@ -5,43 +5,44 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Home from './pages/Home';
 import ProtectedRoute from "./components/ProtectedRoute";
+import About from './navigations/About';
+import Resource from './navigations/Resource';
+import Profile from './navigations/Profile';
+import Course from './components/Course';
 
-const Logout = () => {
-  localStorage.clear()
-  return <Navigate to="/login" />
-}
 
-const RegisterAndLogout = () => {
-  localStorage.clear()
-  return <Register />
-}
 
 function App() {
 
       return <div>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" 
-            element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-            }
-            />
-            <Route 
-              path="/login" element={<Login />}
-            />
-            <Route 
-            path="/register" 
-            element={<RegisterAndLogout />}
-            />
-            <Route 
-              path="*" element={<NotFound />}
-            />
-            <Route 
-              path="/logout" element={<Logout />}
-            />  
-          </Routes>
+            <Routes>
+              <Route path="/" 
+              element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+              }
+              />
+              <Route 
+                path="/login" element={<Login />}
+              />
+              <Route 
+              path="/register" 
+              element={<Register />}
+              />
+              <Route 
+                path="*" element={<NotFound />}
+              />
+              <Route path="/courses" element={<Course />} 
+              />
+              <Route path="/about" element={<About />}
+              />
+              <Route path="/resources" element={<Resource />}
+              />  
+              <Route path="/profile" element={<Profile />}
+              />
+            </Routes> 
         </BrowserRouter>
       </div>
 }

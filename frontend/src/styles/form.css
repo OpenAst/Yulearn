@@ -53,3 +53,7 @@ h1 {
   cursor: pointer;
   border: none;
 }
+.form-text {
+  margin-top: 2px;
+  font-family: Sans-serif
+}

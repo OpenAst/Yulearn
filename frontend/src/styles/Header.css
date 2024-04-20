@@ -1,0 +1,23 @@
+.welcome-text {
+  animation: slideIn is ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.avatar {
+  border-radius: 100%;
+  position: fixed;
+  left: 90%;
+  top: 0%; 
+
+}
