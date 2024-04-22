@@ -1,8 +1,10 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useState, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Header = ({ user }) => {
   const navigate = useNavigate();
+  const [avatarUrl, setAvatarUrl] = useState([])
 
   const handleProfileClick = (e) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ const Header = ({ user }) => {
     
     <div className="header">
       <div className="welcome-text">
-        <p>Welcome, {user.username}</p>
+        <p>Welcome</p>
         <Navbar />
       </div>
       <div 

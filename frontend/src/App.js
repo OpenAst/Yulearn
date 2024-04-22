@@ -14,37 +14,38 @@ import Course from './components/Course';
 
 function App() {
 
-      return <div>
+      return (
         <BrowserRouter>
-            <Routes>
-              <Route path="/" 
-              element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-              }
-              />
-              <Route 
-                path="/login" element={<Login />}
-              />
-              <Route 
-              path="/register" 
-              element={<Register />}
-              />
-              <Route 
-                path="*" element={<NotFound />}
-              />
-              <Route path="/courses" element={<Course />} 
-              />
-              <Route path="/about" element={<About />}
-              />
-              <Route path="/resources" element={<Resource />}
-              />  
-              <Route path="/profile" element={<Profile />}
-              />
-            </Routes> 
+          <Routes>
+            <Route path="/" 
+            element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+            }
+            />
+            <Route 
+              path="/login" element={<Login />}
+            />
+            <Route 
+            path="/register" 
+            element={<Register />}
+            />
+            <Route 
+              path="*" element={<NotFound />}
+            />
+            <Route path="/courses" element={<Course />} 
+            />
+            <Route path="/about" element={<About />}
+            />
+            <Route path="/resources" element={<Resource />}
+            />  
+            <Route path="/profile" element={<Profile />}
+            />
+          </Routes> 
         </BrowserRouter>
-      </div>
+
+      )
 }
 
 export default App;
