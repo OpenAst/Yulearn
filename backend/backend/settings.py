@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,15 +49,19 @@ REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': (
     'rest_framework.authentication.TokenAuthentication',
     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    
   ),
+  'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
   
 }
 
-SIMPLE_JWT = {
-  'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-  'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-}
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -104,13 +109,14 @@ DJOSER = {
   'SEND_ACTIVATION_EMAIL': False,
 }
 
+
 EMAIL = {
   'EMAIL_BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
   'EMAIL_HOST': 'smtp.gmail.com',
   'EMAIL_PORT': 587,
   'EMAIL_USE_TLS': True,
-  'EMAIL_USER': 'isrealme0@gmail.com',
-  'EMAIL_PASSWORD': 'Zert!7930',
+  'EMAIL_USER': os.environ.get('EMAIL_HOST_USER'),
+  'EMAIL_PASSWORD': os.environ.get('EMAIL_HOST_PASSWORD')
   
 }
 
